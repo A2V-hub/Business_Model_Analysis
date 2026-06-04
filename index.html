@@ -135,8 +135,9 @@
             <p class="intro">Please answer these simple questions about your company. We will review your answers and email your business analysis to you.</p>
         </div>
         
-        <form id="business-review-form" action="https://web3forms.com" method="POST">
-    	<input type="hidden" name="access_key" value="ffc24165-aeac-4328-ae61-a832516d26cb">
+        <form id="business-review-form" action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value="ffc24165-aeac-4328-ae61-a832516d26cb">
+
 			<input type="hidden" name="redirect" value="">
 
 
@@ -233,14 +234,52 @@
 </div>
 
 <script>
-    // This script controls switching the view from the form to the success message
     document.getElementById('business-review-form').addEventListener('submit', function(e) {
-        // Note: Remove e.preventDefault() if your email handling backend requires a page reload
-        e.preventDefault(); 
-        document.getElementById('form-view').style.display = 'none';
-        document.getElementById('success-view').style.display = 'block';
-        window.scrollTo({top: 0, behavior: 'smooth'});
+        e.preventDefault();
+        
+        var form = this;
+        var submitBtn = form.querySelector('.submit-btn');
+        
+        // Change button text so user knows it is sending
+        submitBtn.innerText = 'Sending Details...';
+        submitBtn.disabled = true;
+
+        // Convert form data into an object format Web3Forms expects
+        var formData = new FormData(form);
+        var object = Object.fromEntries(formData);
+        var json = JSON.stringify(object);
+
+        // Send the data to Web3Forms API
+        fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+        .then(async (response) => {
+            let jsonResponse = await response.json();
+            if (response.status == 200) {
+                // SUCCESS: Hide form and show completion screen
+                document.getElementById('form-view').style.display = 'none';
+                document.getElementById('success-view').style.display = 'block';
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            } else {
+                // SERVER ERROR
+                alert("Submission Error: " + jsonResponse.message);
+                submitBtn.innerText = 'Submit for Analysis';
+                submitBtn.disabled = false;
+            }
+        })
+        .catch(error => {
+            // CONNECTION ERROR
+            alert("Network error. Please check your internet connection and try again.");
+            submitBtn.innerText = 'Submit for Analysis';
+            submitBtn.disabled = false;
+        });
     });
 </script>
+
 </body>
 </html>
