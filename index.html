@@ -36,17 +36,8 @@
             padding-bottom: 20px;
             margin-bottom: 30px;
         }
-        h1 { 
-            color: var(--primary); 
-            font-size: 24px; 
-            font-weight: 700; 
-            margin: 0 0 8px 0;
-        }
-        p.intro { 
-            color: var(--text-muted); 
-            margin: 0; 
-            font-size: 15px;
-        }
+        h1 { color: var(--primary); font-size: 24px; font-weight: 700; margin: 0 0 8px 0; }
+        p.intro { color: var(--text-muted); margin: 0; font-size: 15px; }
         .section-title {
             font-size: 13px;
             text-transform: uppercase;
@@ -57,73 +48,26 @@
             display: flex;
             align-items: center;
         }
-        .section-title::after {
-            content: "";
-            flex: 1;
-            margin-left: 15px;
-            height: 1px;
-            background-color: #e2e8f0;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
+        .section-title::after { content: ""; flex: 1; margin-left: 15px; height: 1px; background-color: #e2e8f0; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .field { margin-bottom: 20px; }
-        label { 
-            display: block; 
-            font-weight: 600; 
-            margin-bottom: 6px; 
-            color: var(--primary); 
-            font-size: 14px; 
-        }
-        .help-text {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-            margin-top: -2px;
-        }
+        label { display: block; font-weight: 600; margin-bottom: 6px; color: var(--primary); font-size: 14px; }
+        .help-text { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; margin-top: -2px; }
         input[type="text"], input[type="email"], input[type="tel"], textarea {
-            width: 100%;
-            padding: 10px 14px;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            font-size: 14px;
-            color: var(--text-main);
-            background-color: #fff;
-            box-sizing: border-box;
-            transition: all 0.2s ease;
+            width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 6px;
+            font-size: 14px; color: var(--text-main); background-color: #fff; box-sizing: border-box; transition: all 0.2s ease;
         }
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
+        input:focus, textarea:focus { outline: none; border-color: var(--accent); }
         textarea { resize: vertical; min-height: 100px; font-family: inherit; }
         button.submit-btn {
-            width: 100%;
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            padding: 14px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.2s ease;
-            margin-top: 20px;
+            width: 100%; background-color: var(--accent); color: white; border: none; padding: 14px;
+            font-size: 16px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: background 0.2s ease; margin-top: 20px;
         }
         button.submit-btn:hover { background-color: #1d4ed8; }
-        .success-box {
-            display: none;
-            text-align: center;
-            padding: 30px 10px;
-        }
+        .success-box { display: none; text-align: center; padding: 30px 10px; }
         .success-box h3 { color: #16a34a; font-size: 22px; margin-bottom: 10px; font-weight: 700; }
         .success-box p { color: var(--text-muted); font-size: 15px; max-width: 500px; margin: 0 auto; }
-        @media (max-width: 640px) {
-            .grid { grid-template-columns: 1fr; gap: 0; }
-            .form-container { padding: 20px; }
-        }
+        @media (max-width: 640px) { .grid { grid-template-columns: 1fr; gap: 0; } .form-container { padding: 20px; } }
     </style>
 </head>
 <body>
@@ -135,22 +79,15 @@
             <p class="intro">Please answer these simple questions about your company. We will review your answers and email your business analysis to you.</p>
         </div>
         
+        <!-- PASTE YOUR CUSTOM FORMSPREE URL IN THE ACTION WINDOW BELOW -->
         <form id="business-review-form" action="https://formspree.io/f/xpqewvpa" method="POST">
-    <input type="hidden" name="access_key" value="ffc24165-aeac-4328-ae61-a832516d26cb">
-    <input type="hidden" name="subject" value="New Business Analysis Submission">
-    <input type="hidden" name="from_name" value="Business Diagnostic Portal">
-
-
-			<input type="hidden" name="redirect" value="">
-
-
             
             <!-- SECTION 1 -->
             <div class="section-title">1. Your Details</div>
             <div class="grid">
                 <div class="field">
                     <label for="client_name">Your Name *</label>
-                    <input type="text" id="client_name" name="name" required placeholder="e.g., John Smith">
+                    <input type="text" id="client_name" name="client_name" required placeholder="e.g., John Smith">
                 </div>
                 <div class="field">
                     <label for="business_name">Business Name *</label>
@@ -186,7 +123,7 @@
                 <textarea id="target_demographics" name="target_demographics" required placeholder="e.g., Local families living nearby, walk-in shoppers, and small local offices ordering for staff meetings..."></textarea>
             </div>
 
-	                <!-- SECTION 3 -->
+            <!-- SECTION 3 -->
             <div class="section-title">3. Your Growth & New Plans</div>
             <div class="field">
                 <label for="current_limitations">Question 4: What system or method do you currently use, and what is your biggest problem with it? *</label>
@@ -217,7 +154,7 @@
             <div class="field">
                 <label for="active_pipeline">Question 8: How many active or regular clients do you have right now? How many do you expect to move to your new offer at start? *</label>
                 <div class="help-text">Give us an estimate of your current regular buyers and how many will realistically try your new plan right away.</div>
-                <textarea id="active_pipeline" name="active_pipeline" required placeholder="e.g., We have about 10 regular corporate lunch clients. We expect at least 15 to 25 family households to join our new subscription in the first few months..."></textarea>
+				<textarea id="active_pipeline" name="active_pipeline" required placeholder="e.g., We have about 10 regular corporate lunch clients. We expect at least 15 to 25 family households to join our new subscription in the first few months..."></textarea>
             </div>
             <div class="field">
                 <label for="financial_targets">Question 9: What is your financial goal or expected extra revenue from this change over the next 12 months? *</label>
