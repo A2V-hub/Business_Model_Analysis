@@ -28,7 +28,7 @@
             margin: 0 auto;
             padding: 40px;
             border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
             border: 1px solid #e2e8f0;
         }
         .header {
@@ -55,171 +55,111 @@
         .help-text { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; margin-top: -2px; }
         input[type="text"], input[type="email"], input[type="tel"], textarea {
             width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 6px;
-            font-size: 14px; color: var(--text-main); background-color: #fff; box-sizing: border-box; transition: all 0.2s ease;
+            font-size: 14px; color: var(--text-main); background-color: #fff; box-sizing: border-box;
         }
-        input:focus, textarea:focus { outline: none; border-color: var(--accent); }
         textarea { resize: vertical; min-height: 100px; font-family: inherit; }
         button.submit-btn {
             width: 100%; background-color: var(--accent); color: white; border: none; padding: 14px;
-            font-size: 16px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: background 0.2s ease; margin-top: 20px;
+            font-size: 16px; font-weight: 600; border-radius: 6px; cursor: pointer; margin-top: 20px;
         }
         button.submit-btn:hover { background-color: #1d4ed8; }
-        .success-box { display: none; text-align: center; padding: 30px 10px; }
-        .success-box h3 { color: #16a34a; font-size: 22px; margin-bottom: 10px; font-weight: 700; }
-        .success-box p { color: var(--text-muted); font-size: 15px; max-width: 500px; margin: 0 auto; }
         @media (max-width: 640px) { .grid { grid-template-columns: 1fr; gap: 0; } .form-container { padding: 20px; } }
     </style>
 </head>
 <body>
 
 <div class="form-container">
-    <div id="form-view">
-        <div class="header">
-            <h1>Business Review & Strategy Form</h1>
-            <p class="intro">Please answer these simple questions about your company. We will review your answers and email your business analysis to you.</p>
+    <div class="header">
+        <h1>Business Review & Strategy Form</h1>
+        <p class="intro">Please answer these simple questions about your company. We will review your answers and email your business analysis to you.</p>
+    </div>
+    
+    <!-- IMPORTANT: Put your exact Formspree URL down inside the quotes below -->
+    <form action="https://formspree.io/f/xpqewvpa" method="POST">
+        
+        <!-- SECTION 1 -->
+        <div class="section-title">1. Your Details</div>
+        <div class="grid">
+            <div class="field">
+                <label for="client_name">Your Name *</label>
+                <input type="text" id="client_name" name="Your Name" required placeholder="e.g., John Smith">
+            </div>
+            <div class="field">
+                <label for="business_name">Business Name *</label>
+                <input type="text" id="business_name" name="Business Name" required placeholder="e.g., Apex Retail">
+            </div>
         </div>
-        
-        <!-- PASTE YOUR CUSTOM FORMSPREE URL IN THE ACTION WINDOW BELOW -->
-        <form id="business-review-form" action="https://formspree.io/f/xpqewvpa" method="POST">
-            
-            <!-- SECTION 1 -->
-            <div class="section-title">1. Your Details</div>
-            <div class="grid">
-                <div class="field">
-                    <label for="client_name">Your Name *</label>
-                    <input type="text" id="client_name" name="client_name" required placeholder="e.g., John Smith">
-                </div>
-                <div class="field">
-                    <label for="business_name">Business Name *</label>
-                    <input type="text" id="business_name" name="business_name" required placeholder="e.g., Apex Retail">
-                </div>
+        <div class="grid">
+            <div class="field">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="Email Address" required placeholder="e.g., john@yourbusiness.com">
             </div>
-            <div class="grid">
-                <div class="field">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" required placeholder="e.g., john@yourbusiness.com">
-                </div>
-                <div class="field">
-                    <label for="mobile">Phone Number *</label>
-                    <input type="tel" id="mobile" name="mobile" required placeholder="e.g., +1 555-0199">
-                </div>
+            <div class="field">
+                <label for="mobile">Phone Number *</label>
+                <input type="tel" id="mobile" name="Phone Number" required placeholder="e.g., +1 555-0199">
             </div>
+        </div>
 
-            <!-- SECTION 2 -->
-            <div class="section-title">2. About Your Business</div>
-            <div class="field">
-                <label for="history_footprint">Question 1: When did you start, where are you located, and do you have a physical shop or sell online? *</label>
-                <div class="help-text">Tell us briefly about your location, your opening year, and if you are online, physical, or both.</div>
-                <textarea id="history_footprint" name="history_footprint" required placeholder="e.g., We opened our physical bakery in Dubai in 2017. We also started a basic website last year to take delivery orders..."></textarea>
-            </div>
-            <div class="field">
-                <label for="current_portfolio">Question 2: What products or services do you sell? *</label>
-                <div class="help-text">List your main items, services, or packages that bring in money today.</div>
-                <textarea id="current_portfolio" name="current_portfolio" required placeholder="e.g., We sell custom birthday cakes, daily bread, pastries, and offer event catering services..."></textarea>
-            </div>
-            <div class="field">
-                <label for="target_demographics">Question 3: Who are your typical customers? *</label>
-                <div class="help-text">Describe the people or companies who buy from you the most.</div>
-                <textarea id="target_demographics" name="target_demographics" required placeholder="e.g., Local families living nearby, walk-in shoppers, and small local offices ordering for staff meetings..."></textarea>
-            </div>
+        <!-- SECTION 2 -->
+        <div class="section-title">2. About Your Business</div>
+        <div class="field">
+            <label for="history_footprint">Question 1: When did you start, where are you located, and do you have a physical shop or sell online? *</label>
+            <div class="help-text">Tell us briefly about your location, your opening year, and if you are online, physical, or both.</div>
+            <textarea id="history_footprint" name="Q1: History and Location" required placeholder="e.g., We opened our physical bakery in Dubai in 2017..."></textarea>
+        </div>
+        <div class="field">
+            <label for="current_portfolio">Question 2: What products or services do you sell? *</label>
+            <div class="help-text">List your main items, services, or packages that bring in money today.</div>
+            <textarea id="current_portfolio" name="Q2: Main Products or Services" required placeholder="e.g., We sell custom birthday cakes, daily bread, pastries..."></textarea>
+        </div>
+        <div class="field">
+            <label for="target_demographics">Question 3: Who are your typical customers? *</label>
+            <div class="help-text">Describe the people or companies who buy from you the most.</div>
+            <textarea id="target_demographics" name="Q3: Typical Customers" required placeholder="e.g., Local families living nearby, walk-in shoppers..."></textarea>
+        </div>
 
-            <!-- SECTION 3 -->
-            <div class="section-title">3. Your Growth & New Plans</div>
-            <div class="field">
-                <label for="current_limitations">Question 4: What system or method do you currently use, and what is your biggest problem with it? *</label>
-                <div class="help-text">Explain what is holding your business back or taking up too much of your time right now.</div>
-                <textarea id="current_limitations" name="current_limitations" required placeholder="e.g., We take orders manually over the phone and WhatsApp. It is disorganized, we miss orders, and we cannot scale up..."></textarea>
-            </div>
-            <div class="field">
-                <label for="evolution_integration">Question 5: What new product, upgrade, or service tier do you want to add or switch to? *</label>
-                <div class="help-text">Describe the big improvement or new premium package you want to start offering your clients.</div>
-                <textarea id="evolution_integration" name="evolution_integration" required placeholder="e.g., We want to set up an automatic online ordering website and offer a premium monthly bread-delivery subscription for families..."></textarea>
-            </div>
+        <!-- SECTION 3 -->
+        <div class="section-title">3. Your Growth & New Plans</div>
+        <div class="field">
+            <label for="current_limitations">Question 4: What system or method do you currently use, and what is your biggest problem with it? *</label>
+            <div class="help-text">Explain what is holding your business back or taking up too much of your time right now.</div>
+            <textarea id="current_limitations" name="Q4: Current Gaps and Limitations" required placeholder="e.g., We take orders manually over phone and WhatsApp. It is disorganized..."></textarea>
+        </div>
+        <div class="field">
+            <label for="evolution_integration">Question 5: What new product, upgrade, or service tier do you want to add or switch to? *</label>
+            <div class="help-text">Describe the big improvement or new premium package you want to start offering your clients.</div>
+            <textarea id="evolution_integration" name="Q5: New Premium Plans" required placeholder="e.g., We want to set up an automatic online ordering website..."></textarea>
+        </div>
 
-            <!-- SECTION 4 -->
-            <div class="section-title">4. Operations & Marketing</div>
-            <div class="field">
-                <label for="technical_competency">Question 6: What does your team do daily, how did they learn, and how fast do you finish a job or answer a customer? *</label>
-                <div class="help-text">Tell us about your daily workflow, your team's real-world experience, and your average response time.</div>
-                <textarea id="technical_competency" name="technical_competency" required placeholder="e.g., Baking, packaging, and handling local deliveries. Our team has years of hands-on kitchen experience. We reply to customer complaints within 2 hours..."></textarea>
-            </div>
-            <div class="field">
-                <label for="gtm_channels">Question 7: How do new customers find you, and how will you convince old customers to try your new premium offer? *</label>
-                <div class="help-text">List your marketing channels (like word of mouth, social media, or walk-ins) and how you will sell your upgrade.</div>
-                <textarea id="gtm_channels" name="gtm_channels" required placeholder="e.g., People find us through Google Maps, Instagram, and word of mouth. We will tell current customers about the new website by giving them a discount card..."></textarea>
-            </div>
+        <!-- SECTION 4 -->
+        <div class="section-title">4. Operations & Marketing</div>
+        <div class="field">
+            <label for="technical_competency">Question 6: What does your team do daily, how did they learn, and how fast do you finish a job or answer a customer? *</label>
+            <div class="help-text">Tell us about your daily workflow, your team's real-world experience, and your average response time.</div>
+            <textarea id="technical_competency" name="Q6: Team Workflows and SLAs" required placeholder="e.g., Baking, packaging, and handling local deliveries..."></textarea>
+        </div>
+        <div class="field">
+            <label for="gtm_channels">Question 7: How do new customers find you, and how will you convince old customers to try your new premium offer? *</label>
+            <div class="help-text">List your marketing channels and how you will sell your upgrade.</div>
+            <textarea id="gtm_channels" name="Q7: Acquisition Channels" required placeholder="e.g., People find us through Google Maps, Instagram..."></textarea>
+        </div>
 
-            <!-- SECTION 5 -->
-            <div class="section-title">5. Your Sales & Goals</div>
-            <div class="field">
-                <label for="active_pipeline">Question 8: How many active or regular clients do you have right now? How many do you expect to move to your new offer at start? *</label>
-                <div class="help-text">Give us an estimate of your current regular buyers and how many will realistically try your new plan right away.</div>
-				<textarea id="active_pipeline" name="active_pipeline" required placeholder="e.g., We have about 10 regular corporate lunch clients. We expect at least 15 to 25 family households to join our new subscription in the first few months..."></textarea>
-            </div>
-            <div class="field">
-                <label for="financial_targets">Question 9: What is your financial goal or expected extra revenue from this change over the next 12 months? *</label>
-                <div class="help-text">State your target sales number or income goal for this specific adjustment.</div>
-                <input type="text" id="financial_targets" name="financial_targets" required placeholder="e.g., We aim to make an extra $10,000 in sales this year from the online subscription platform">
-            </div>
+        <!-- SECTION 5 -->
+        <div class="section-title">5. Your Sales & Goals</div>
+        <div class="field">
+            <label for="active_pipeline">Question 8: How many active or regular clients do you have right now? How many do you expect to move to your new offer at start? *</label>
+            <div class="help-text">Give us an estimate of your current regular buyers and how many will realistically try your new plan right away.</div>
+            <textarea id="active_pipeline" name="Q8: Active Base and Targets" required placeholder="e.g., We have about 10 regular corporate lunch clients..."></textarea>
+        </div>
+        <div class="field">
+            <label for="financial_targets">Question 9: What is your financial goal or expected extra revenue from this change over the next 12 months? *</label>
+            <div class="help-text">State your target sales number or income goal for this specific adjustment.</div>
+            <input type="text" id="financial_targets" name="Q9: Expected Revenue Growth" required placeholder="e.g., We aim to make an extra $10,000 in sales this year">
+        </div>
 
-            <button type="submit" class="submit-btn">Submit for Analysis</button>
-        </form>
-    </div>
-
-    <!-- The Success Screen shown to the client after submission -->
-    <div id="success-view" class="success-box">
-        <h3>Form Submitted Successfully</h3>
-        <p>Thank you for your answers. We have received your business details safely. Our team will look over everything carefully. <strong>Your core business model analysis will be sent to your email address within 24 to 48 hours.</strong></p>
-    </div>
+        <button type="submit" class="submit-btn">Submit for Analysis</button>
+    </form>
 </div>
-
-<script>
-    document.getElementById('business-review-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        var form = this;
-        var submitBtn = form.querySelector('.submit-btn');
-        
-        // Change button text so user knows it is sending
-        submitBtn.innerText = 'Sending Details...';
-        submitBtn.disabled = true;
-
-        // Convert form data into an object format Web3Forms expects
-        var formData = new FormData(form);
-        var object = Object.fromEntries(formData);
-        var json = JSON.stringify(object);
-
-        // Send the data to Web3Forms API
-        fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: json
-        })
-        .then(async (response) => {
-            let jsonResponse = await response.json();
-            if (response.status == 200) {
-                // SUCCESS: Hide form and show completion screen
-                document.getElementById('form-view').style.display = 'none';
-                document.getElementById('success-view').style.display = 'block';
-                window.scrollTo({top: 0, behavior: 'smooth'});
-            } else {
-                // SERVER ERROR
-                alert("Submission Error: " + jsonResponse.message);
-                submitBtn.innerText = 'Submit for Analysis';
-                submitBtn.disabled = false;
-            }
-        })
-        .catch(error => {
-            // CONNECTION ERROR
-            alert("Network error. Please check your internet connection and try again.");
-            submitBtn.innerText = 'Submit for Analysis';
-            submitBtn.disabled = false;
-        });
-    });
-</script>
 
 </body>
 </html>
