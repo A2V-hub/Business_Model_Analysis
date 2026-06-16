@@ -1,645 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comprehensive Business Diagnostic & Strategy Assessment</title>
-    <style>
-        :root {
-            --primary: #0f172a;
-            --accent: #2563eb;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --bg-page: #f8fafc;
-            --bg-card: #ffffff;
-            --border: #cbd5e1;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg-page);
-            color: var(--text-main);
-            line-height: 1.6;
-            padding: 40px 20px;
-            margin: 0;
-        }
-        .form-container {
-            max-width: 750px;
-            background: var(--bg-card);
-            margin: 0 auto;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
-        }
-        .header {
-            border-bottom: 2px solid #f1f5f9;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-        h1 { color: var(--primary); font-size: 24px; font-weight: 700; margin: 0 0 8px 0; }
-        p.intro { color: var(--text-muted); margin: 0; font-size: 15px; }
-        .section-title {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--accent);
-            margin: 40px 0 20px 0;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-        }
-        .section-title::after { content: ""; flex: 1; margin-left: 15px; height: 1px; background-color: #e2e8f0; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-        .field { margin-bottom: 24px; }
-        label { display: block; font-weight: 600; margin-bottom: 6px; color: var(--primary); font-size: 14px; }
-        .help-text { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; margin-top: -2px; }
-        input[type="text"], input[type="email"], input[type="tel"], textarea {
-            width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 6px;
-            font-size: 14px; color: var(--text-main); background-color: #fff; box-sizing: border-box; transition: border-color 0.2s;
-        }
-        input:focus, textarea:focus { outline: none; border-color: var(--accent); }
-        textarea { resize: vertical; min-height: 80px; font-family: inherit; }
-        button.submit-btn {
-            width: 100%; background-color: var(--accent); color: white; border: none; padding: 16px;
-            font-size: 16px; font-weight: 600; border-radius: 6px; cursor: pointer; margin-top: 20px; transition: background 0.2s;
-        }
-        button.submit-btn:hover { background-color: #1d4ed8; }
-        .success-box { display: none; text-align: left; padding: 20px 0; }
-        @media (max-width: 640px) { .grid { grid-template-columns: 1fr; gap: 0; } .form-container { padding: 20px; } }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Diagnostic Form</title>
+
+<style>
+:root {
+    --primary: #0f172a;
+    --accent: #2563eb;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --bg-page: #f8fafc;
+    --bg-card: #ffffff;
+    --border: #cbd5e1;
+}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    padding: 40px 20px;
+}
+.form-container {
+    max-width: 750px;
+    background: white;
+    margin: auto;
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+}
+.section-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 40px 0 20px;
+    font-weight: 700;
+}
+.field { margin-bottom: 20px; }
+label { font-weight: 600; display: block; margin-bottom: 5px; }
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+}
+textarea { min-height: 80px; }
+button {
+    width: 100%;
+    padding: 15px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    margin-top: 20px;
+    font-size: 16px;
+}
+</style>
 </head>
+
 <body>
 
 <div class="form-container">
-    <div id="form-view">
-        <div class="header">
-            <h1>ModelBlueprint Diagnostic Matrix</h1>
-            <p class="intro">Please complete our operational assessment questionnaire below. Our analysis desk will utilize your answers to map out your core business structure and optimization roadmap.</p>
-        </div>
-        
-        <!-- IMPORTANT: Replace the action link below with your exact Formspree URL -->
-        <form id="business-review-form" action="https://formspree.io/f/xpqewvpa" method="POST">
-			<input type="hidden" name="_subject" value="New Business Diagnostic Submission">
-			<input type="hidden" name="_template" value="table">
-            
-            <!-- MASTER CONTACT PROFILE -->
-            <div class="section-title">Primary Contact Information</div>
-            <div class="grid">
-                <div class="field">
-                    <label for="client_name">Principal Contact Name *</label>
-                    <input type="text" id="client_name" name="Contact Name" required placeholder="e.g., Sarah Jenkins">
-                </div>
-                <div class="field">
-                    <label for="mobile">Direct Phone Number *</label>
-                    <input type="tel" id="mobile" name="Phone Number" required placeholder="e.g., +971 50 123 4567">
-                </div>
-            </div>
-            <div class="grid">
-                <div class="field">
-                    <label for="email">Corporate Email Address *</label>
-                    <input type="email" id="email" name="Email Address" required placeholder="e.g., sjenkins@company.com">
-                </div>
-            </div>
 
-            <!-- SECTION A: BUSINESS OVERVIEW -->
-            <div class="section-title">Section A: Business Overview</div>
-            <div class="grid">
-				<div class="field">
-                    <label for="q1_biz_name">1. What is the name of the business? *</label>
-                    <input type="text" id="q1_biz_name" name="Q01: Business Name" required placeholder="e.g., Elite Logistics Solutions">
-                </div>
-                <div class="field">
-                    <label for="q2_est">2. When was the business established? *</label>
-                    <input type="text" id="q2_est" name="Q02: Year Established" required placeholder="e.g., October 2018">
-                </div>
-                <div class="field">
-                    <label for="q3_industry">3. What industry or industries does the business operate in? *</label>
-                    <input type="text" id="q3_industry" name="Q03: Industries" required placeholder="e.g., Corporate logistics and manufacturing distribution">
-                </div>
-            </div>
-            <div class="field">
-                <label for="q4_products">4. What products and/or services does the business provide? *</label>
-                <textarea id="q4_products" name="Q04: Products & Services" required placeholder="e.g., Temperature-controlled shipping freight and warehousing lease setups."></textarea>
-            </div>
-            <div class="field">
-                <label for="q5_one_sentence">5. In one sentence, how would you describe the business? *</label>
-                <textarea id="q5_one_sentence" name="Q05: One Sentence Description" required placeholder="e.g., We provide seamless, tech-enabled cold chain shipping services to food producers."></textarea>
-            </div>
-            <div class="field">
-                <label for="q6_problem">6. What customer problem, need, or desire does the business address? *</label>
-                <textarea id="q6_problem" name="Q06: Customer Problem Addressed" required placeholder="e.g., Distributors lose margin when legacy couriers break temperature controls."></textarea>
-            </div>
-            <div class="field">
-                <label for="q7_diff">7. What makes the business different from competitors? *</label>
-                <textarea id="q7_diff" name="Q07: Competitive Differentiators" required placeholder="e.g., We offer real-time transit tracking and live temp log readouts on customer apps."></textarea>
-            </div>
-            <div class="field">
-                <label for="q8_outcomes">8. What outcomes do customers typically expect from your business? *</label>
-                <textarea id="q8_outcomes" name="Q08: Expected Customer Outcomes" required placeholder="e.g., On-time shipping arrays with zero spoilage lines so store shelves stay full."></textarea>
-            </div>
+<form action="https://formspree.io/f/xpqewvpa" method="POST">
 
-            <!-- SECTION B: CUSTOMERS & MARKETS -->
-            <div class="section-title">Section B: Customers & Markets</div>
-            <div class="field">
-                <label for="q9_primary_cust">9. Who are your primary customers? *</label>
-                <textarea id="q9_primary_cust" name="Q09: Primary Customers" required placeholder="e.g., Regional grocery chains, manufacturing operators, and commercial bakeries."></textarea>
-            </div>
-            <div class="field">
-                <label for="q10_type">10. Are your customers individuals, businesses, governments, or a combination? *</label>
-                <input type="text" id="q10_type" name="Q10: Customer Entity Type" required placeholder="e.g., Private corporate business accounts (B2B) exclusively.">
-            </div>
-            <div class="field">
-                <label for="q11_rev_seg">11. What customer segments generate the most revenue? *</label>
-                <textarea id="q11_rev_seg" name="Q11: Highest Revenue Segments" required placeholder="e.g., Large enterprise dairy manufacturing plants booking daily multi-city freights."></textarea>
-            </div>
-            <div class="field">
-                <label for="q12_prof_seg">12. What customer segments generate the highest profits? *</label>
-                <textarea id="q12_prof_seg" name="Q12: Highest Profit Segments" required placeholder="e.g., Independent premium restaurant networks booking custom express transit slots."></textarea>
-            </div>
-            <div class="field">
-                <label for="q13_ideal">13. What characteristics define your ideal customer? *</label>
-                <textarea id="q13_ideal" name="Q13: Ideal Customer Attributes" required placeholder="e.g., Multi-location groups requesting annual shipping contracts with clear schedules."></textarea>
-            </div>
-	            <div class="grid">
-                <div class="field">
-                    <label for="q14_geo">14. Are your customers local, regional, national, or international? *</label>
-                    <input type="text" id="q14_geo" name="Q14: Geographic Reach" required placeholder="e.g., Regional across the entire domestic market and neighboring states.">
-                </div>
-                <div class="field">
-                    <label for="q15_active_count">15. Approximately how many active customers do you currently serve? *</label>
-                    <input type="text" id="q15_active_count" name="Q15: Active Customer Volume" required placeholder="e.g., Around 150 steady commercial business accounts.">
-                </div>
-            </div>
-            <div class="field">
-                <label for="q16_mix">16. How concentrated is your customer base? (Few large, many small, or balanced mix) *</label>
-                <input type="text" id="q16_mix" name="Q16: Customer Base Concentration" required placeholder="e.g., Balanced mix (3 flagship anchor accounts, 80 mid-tier recurring clients).">
-            </div>
-            <div class="field">
-                <label for="q17_discovery_way">17. How do customers typically discover your business? *</label>
-                <textarea id="q17_discovery_way" name="Q17: Discovery Channels" required placeholder="e.g., Local search listings, target social media marketing campaigns, and organic industry word-of-mouth referrals."></textarea>
-            </div>
-            <div class="field">
-                <label for="q18_choice_reason">18. Why do customers choose you instead of competitors? *</label>
-                <textarea id="q18_choice_reason" name="Q18: Core Selection Factor" required placeholder="e.g., Our lightning-fast delivery speeds, responsive support managers, and premium production standards."></textarea>
-            </div>
+<input type="hidden" name="_subject" value="New Diagnostic Submission">
 
-            <!-- SECTION C: PRODUCTS & SERVICES -->
-            <div class="section-title">Section C: Products & Services</div>
-            <div class="field">
-                <label for="q19_main_offers">19. What are your primary products or services? *</label>
-                <textarea id="q19_main_offers" name="Q19: Primary Offerings Portfolio" required placeholder="e.g., Custom product fabrication, bulk materials shipping management, and monthly equipment maintenance retainers."></textarea>
-            </div>
-            <div class="grid">
-                <div class="field">
-                    <label for="q20_top_rev_item">20. Which products or services generate the most revenue? *</label>
-                    <input type="text" id="q20_top_rev_item" name="Q20: Top Revenue Driver" required placeholder="e.g., Direct high-volume standard component sales.">
-                </div>
-                <div class="field">
-                    <label for="q21_top_prof_item">21. Which products or services generate the most profit? *</label>
-                    <input type="text" id="q21_top_prof_item" name="Q21: Top Profit Margin Driver" required placeholder="e.g., Specialized custom configuration consulting contracts.">
-                </div>
-            </div>
-            <div class="grid">
-                <div class="field">
-                    <label for="q22_fast_grow_item">22. Which products or services are growing fastest? *</label>
-                    <input type="text" id="q22_fast_grow_item" name="Q22: Fastest Growth Lines" required placeholder="e.g., Monthly equipment support subscriptions.">
-                </div>
-                <div class="field">
-                    <label for="q23_declining_item">23. Which products or services are declining? *</label>
-                    <input type="text" id="q23_declining_item" name="Q23: Shrinking Product Lines" required placeholder="e.g., Legacy baseline manual configuration work.">
-                </div>
-            </div>
-            <div class="grid">
-                <div class="field">
-                    <label for="q24_standardization">24. Are your offerings standardized, customized, or a combination? *</label>
-                    <input type="text" id="q24_standardization" name="Q24: Portfolio Customization Level" required placeholder="e.g., Combination (70% standard modular parts, 30% highly customized builds).">
-                </div>
-                <div class="field">
-                    <label for="q25_frequency_type">25. On Average, do customers typically purchase once or repeatedly? *</label>
-                    <input type="text" id="q25_frequency_type" name="Q25: Buyer Transaction Frequency" required placeholder="e.g., Highly repetitive (most clients purchase consumables every single month).">
-                </div>
-            </div>
-            <div class="field">
-                <label for="q26_unlocked_value">26. What additional products or services could existing customers buy? *</label>
-                <textarea id="q26_unlocked_value" name="Q26: Uncapped Cross-Sell Horizons" required placeholder="e.g., Long-term operational parts insurance packages or high-tier priority speed support add-ons."></textarea>
-            </div>
+<!-- CONTACT -->
+<div class="section-title">Client Info</div>
 
-            <!-- SECTION D: REVENUE MODEL -->
-            <div class="section-title">Section D: Revenue Model</div>
-            <div class="field">
-                <label for="q27_monetization">27. How does the business generate revenue? *</label>
-                <textarea id="q27_monetization" name="Q27: Revenue Capture Mechanism" required placeholder="e.g., Direct wholesale per-unit product sales combined with structured, recurring monthly multi-tier licensing fees."></textarea>
-            </div>
-            <div class="field">
-                <label for="q28_stream_splits">28. What percentage of revenue comes from each revenue stream? *</label>
-                <textarea id="q28_stream_splits" name="Q28: Revenue Stream Distribution" required placeholder="e.g., 60% from direct physical goods checkout, 30% from service contracts, 10% from ad-hoc parts installation."></textarea>
-            </div>
-            <div class="field">
-                <label for="q29_rev_attributes">29. Is revenue transactional, recurring, project-based, subscription-based, commission-based, or a combination? *</label>
-                <input type="text" id="q29_rev_attributes" name="Q29: Architectural Revenue Form" required placeholder="e.g., Mostly project-based setup milestones leading into recurring monthly maintenance operations.">
-            </div>
-            <div class="grid">
-                <div class="field">
-                    <label for="q30_avg_trans_val">30. What is the average transaction value? *</label>
-                    <input type="text" id="q30_avg_trans_val" name="Q30: Mean Checkout Value" required placeholder="e.g., $1,500 per standard purchase order.">
-                </div>
-                <div class="field">
-                    <label for="q31_customer_ltv">31. What is the average annual customer value? *</label>
-                    <input type="text" id="q31_customer_ltv" name="Q31: Mean Annual Account Contract Value" required placeholder="e.g., Approximately $18,000 across active recurring profiles.">
-                </div>
-            </div>
-            <div class="grid">
-                <div class="field">
-                    <label for="q32_rec_rev_pct">32. What percentage of revenue is recurring? *</label>
-                    <input type="text" id="q32_rec_rev_pct" name="Q32: Recurring Revenue Percentage" required placeholder="e.g., 45% of overall corporate billing cycles are recurring base layers.">
-                </div>
-                <div class="field">
-                    <label for="q33_rev_predictability">33. How predictable is future revenue? *</label>
-                    <input type="text" id="q33_rev_predictability" name="Q33: Forecasting Predictability Degree" required placeholder="e.g., Moderately high predictability looking forward 90 days out due to contract agreements.">
-                </div>
-            </div>
-            <div class="field">
-                <label for="q34_top_growth_levers">34. What factors most influence revenue growth? *</label>
-                <textarea id="q34_top_growth_levers" name="Q34: Primary Growth Levers" required placeholder="e.g., Signing new field distribution contracts and reducing our lead times on high-volume products."></textarea>
-            </div>
-	            <!-- SECTION E: SALES & CUSTOMER ACQUISITION -->
-            <div class="section-title">Section E: Sales & Customer Acquisition</div>
-            <div class="field">
-                <label for="q35_primary_sales_channels">35. What are your primary sales channels? *</label>
-                <textarea id="q35_primary_sales_channels" name="Q35: Sales Channels" required placeholder="e.g., An inside sales team making direct calls, our online digital storefront, and third-party commercial distributors."></textarea>
-            </div>
-            <div class="field">
-                <label for="q36_top_acquisition_channels">36. Which acquisition channels perform best? *</label>
-                <input type="text" id="q36_top_acquisition_channels" name="Q36: Highest Performing Channel" required placeholder="e.g., Inbound organic search rankings followed by direct consultative executive sales out in the field.">
-            </div>
-            <div class="field">
-                <label for="q37_sales_workflow">37. What does the typical sales process look like? *</label>
-                <textarea id="q37_sales_workflow" name="Q37: Standard Sales Process Steps" required placeholder="e.g., Website inquiry form submit -> Initial 15-minute qualification phone call -> Custom cost estimation proposal sent -> Contract signature and billing setup."></textarea>
-            </div>
-            <div class="grid">
-                <div class="field">
-                    <label for="q38_sales_cycle_length">38. What is your average sales cycle i.e. turning a new lead into a paying customer? *</label>
-                    <input type="text" id="q38_sales_cycle_length" name="Q38: Average Sales Cycle" required placeholder="e.g., Roughly 30 to 45 days from first meeting to deal close.">
-                </div>
-                <div class="field">
-                    <label for="q39_referral_percentage">39. What percentage of new customers come from referrals? *</label>
-                    <input type="text" id="q39_referral_percentage" name="Q39: New Leads from Referrals %" required placeholder="e.g., Approximately 35% of monthly inquiries come via introductions.">
-                </div>
-            </div>
-            <div class="grid">
-                <div class="field">
-                    <label for="q40_marketing_percentage">40. What percentage come from marketing activities? *</label>
-                    <input type="text" id="q40_marketing_percentage" name="Q40: New Leads from Marketing %" required placeholder="e.g., Around 40% driven by online ads and search engine updates.">
-                </div>
-                <div class="field">
-                    <label for="q41_direct_sales_percentage">41. What percentage come from direct sales efforts? *</label>
-                    <input type="text" id="q41_direct_sales_percentage" name="Q41: New Leads from Direct Sales %" required placeholder="e.g., 25% targeted through outbound business-to-business cold lists.">
-                </div>
-            </div>
-            <div class="field">
-                <label for="q42_acquisition_bottlenecks">42. What are the biggest challenges in acquiring new customers? *</label>
-                <textarea id="q42_acquisition_bottlenecks" name="Q42: Main Acquisition Challenges" required placeholder="e.g., Competitors drop prices sharply, and busy client decision-makers are hard to reach for initial calls."></textarea>
-            </div>
-
-            <!-- SECTION F: CUSTOMER RELATIONSHIPS -->
-            <div class="section-title">Section F: Customer Relationships</div>
-            <div class="field">
-                <label for="q43_post_purchase_journey">43. What happens after a customer makes a purchase? *</label>
-                <textarea id="q43_post_purchase_journey" name="Q43: Post-Purchase Process" required placeholder="e.g., Automated confirmation email sent -> Account manager schedules an implementation call -> Target assets are built and packed."></textarea>
-            </div>
-            <div class="field">
-                <label for="q44_client_support_system">44. How do you support customers? *</label>
-                <textarea id="q44_client_support_system" name="Q44: Customer Support Methods" required placeholder="e.g., We provide a dedicated support email dashboard, an office telephone help desk, and an online database for tutorials."></textarea>
-            </div>
-            <div class="field">
-                <label for="q45_ongoing_relationship_cadence">45. Do you maintain ongoing relationships with customers? *</label>
-                <textarea id="q45_ongoing_relationship_cadence" name="Q45: Ongoing Relationship Structure" required placeholder="e.g., Yes, our managers hold quarterly account usage reviews alongside sending out a monthly trends email newsletter."></textarea>
-            </div>
-            <div class="grid">
-                <div class="field">
-                    <label for="q46_repeat_purchase_levers">46. How do you encourage repeat purchases? *</label>
-                    <input type="text" id="q46_repeat_purchase_levers" name="Q46: Encouraging Repeat Buying" required placeholder="e.g., Providing bulk pricing discounts on extra components and early access upgrades.">
-                </div>
-                <div class="field">
-                    <label for="q47_client_retention_rate">47. What is your estimated customer retention rate? *</label>
-                    <input type="text" id="q47_client_retention_rate" name="Q47: Estimated Retention Rate" required placeholder="e.g., Around 88% year-over-year account retention pattern.">
-                </div>
-            </div>
-            <div class="field">
-                <label for="q48_churn_reasons">48. What are the most common reasons customers stop buying from you? *</label>
-                <textarea id="q48_churn_reasons" name="Q48: Main Reasons for Churn" required placeholder="e.g., Clients face internal budget challenges or switch to automated cheap tools when they scale back operations."></textarea>
-            </div>
-            <div class="field">
-                <label for="q49_frequent_complaints">49. What customer complaints occur most frequently? *</label>
-                <textarea id="q49_frequent_complaints" name="Q49: Common Customer Complaints" required placeholder="e.g., Delays in seasonal fulfillment schedules and small mistakes during manual invoice adjustments."></textarea>
-            </div>
-            <div class="field">
-                <label for="q50_common_feedback_themes">50. What customer feedback do you receive most often? *</label>
-                <textarea id="q50_common_feedback_themes" name="Q50: Most Frequent Feedback Recieved" required placeholder="e.g., Clients love our support team's quick response, but wish our digital scheduling software was more modern."></textarea>
-            </div>
-
-            <!-- SECTION G: OPERATIONS -->
-            <div class="section-title">Section G: Operations</div>
-            <div class="field">
-                <label for="q51_fulfillment_delivery_methods">51. How do you deliver your products or services? *</label>
-                <textarea id="q51_fulfillment_delivery_methods" name="Q51: Product or Service Delivery Method" required placeholder="e.g., Physical items ship via regional freight delivery, while implementation consulting happens live on Zoom calls."></textarea>
-            </div>
-            <div class="field">
-                <label for="q52_order_to_delivery_steps">52. Describe the major operational steps from customer order to delivery. *</label>
-                <textarea id="q52_order_to_delivery_steps" name="Q52: Operational Flow Steps" required placeholder="e.g., Order rings in checkout dashboard -> Warehouse confirms stock status -> Assembly team packages items -> Courier loads cargo."></textarea>
-            </div>
-            <div class="field">
-                <label for="q53_critical_operational_activities">53. Which operational activities are most critical to success? *</label>
-                <textarea id="q53_critical_operational_activities" name="Q53: Critical Operational Activities" required placeholder="e.g., Maintaining strict raw material inventory tallies and testing component calibration before final packaging runs."></textarea>
-            </div>
-            <div class="grid">
-                <div class="field">
-                    <label for="q54_documented_standard_processes">54. Which processes are documented? *</label>
-                    <input type="text" id="q54_documented_standard_processes" name="Q54: Documented Standard Operating Procedures" required placeholder="e.g., Initial assembly steps and final customer onboarding emails.">
-                </div>
-                <div class="field">
-                    <label for="q55_individual_dependencies">55. Which depend on specific people? *</label>
-                    <input type="text" id="q55_individual_dependencies" name="Q55: Key-Person Single Point Failures" required placeholder="e.g., Complex engineering layouts require our lead builder's sign-off.">
-                </div>
-            </div>
-            <div class="grid">
-                <div class="field">
-                    <label for="q56_manual_activities_scope">56. Which activities are mostly manual? *</label>
-                    <input type="text" id="q56_manual_activities_scope" name="Q56: Heavily Manual Operations" required placeholder="e.g., Custom product decoration, sorting materials, and checking data sheets.">
-                </div>
-                <div class="field">
-                    <label for="q57_automated_activities_scope">57. Which activities are automated? *</label>
-                    <input type="text" id="q57_automated_activities_scope" name="Q57: Automated System Operations" required placeholder="e.g., Monthly payment billing, subscription status reports, and parcel location alerts.">
-                </div>
-            </div>
-            	<div class="field">
-                	<label for="q58_operational_bottlenecks">58. What operational bottlenecks currently exist? *</label>
-                	<textarea id="q58_operational_bottlenecks" name="Q58: Existing Operational Bottlenecks" required placeholder="e.g., Tracking down missing inventory records from local suppliers can hold up our production lines for days."></textarea>
-            	</div>
- 			
-
-            <!-- SECTION H: TECHNOLOGY & SYSTEMS -->
-            <div class="section-title">Section H: Technology & Systems</div>
-            <div class="field">
-                <label for="q59_software_tools">59. What primary software and technology tools does the business use? *</label>
-                <textarea id="q59_software_tools" name="Q59: Primary Software Tools" required placeholder="e.g., We use accounting platforms for billing, spreadsheet files for inventories, and customer message apps for tracking conversations."></textarea>
-            </div>
-            <div class="field">
-                <label for="q60_it_infrastructure">60. Describe your business's IT infrastructure. *</label>
-                <textarea id="q60_it_infrastructure" name="Q60: IT Infrastructure Overview" required placeholder="e.g., Local backup drives in the main office, standard office laptop setups, and cloud storage folders for file sharing."></textarea>
-            </div>
-            <div class="field">
-                <label for="q61_custom_software">61. What custom-built software or tools does your business rely on? *</label>
-                <textarea id="q61_custom_software" name="Q61: Custom Software Assets" required placeholder="e.g., None, we rely completely on standard off-the-shelf platforms and basic cloud subscriptions."></textarea>
-            </div>
-            <div class="grid">
-                <div class="field">
-                    <label for="q62_tech_gaps">62. Where are the gaps in your technology? *</label>
-                    <input type="text" id="q62_tech_gaps" name="Q62: Core Technology Gaps" required placeholder="e.g., No centralized system to manage warehouse distribution and customer logs.">
-                </div>
-                <div class="field">
-                    <label for="q63_manual_data">63. Where do data handoffs happen manually? *</label>
-                    <input type="text" id="q63_manual_data" name="Q63: Manual Data Handoffs" required placeholder="e.g., Typing sales data from checkout files into accounting sheets at month-end.">
-                </div>
-            </div>
-            <div class="field">
-                <label for="q64_tech_frustration">64. What technical problems frustrate your team or customers the most? *</label>
-                <textarea id="q64_tech_frustration" name="Q64: Primary Technical Frustrations" required placeholder="e.g., Customers find the booking system confusing, and our team complains about slow data search speeds."></textarea>
-            </div>
-
-            <!-- SECTION I: HUMAN RESOURCES & TEAM -->
-            <div class="section-title">Section I: Human Resources & Team</div>
-            <div class="grid">
-                <div class="field">
-                    <label for="q65_org_structure">65. Briefly describe your business structure. *</label>
-                    <input type="text" id="q65_org_structure" name="Q65: Organizational Structure" required placeholder="e.g., Simple tier: 1 managing partner, 2 sales leaders, 4 operation workers, and 1 designer.">
-                </div>
-                <div class="field">
-                    <label for="q66_team_size">66. What is the total headcount? *</label>
-                    <input type="text" id="q66_team_size" name="Q66: Full Team Headcount" required placeholder="e.g., 8 full-time employees and 2 seasonal contractors.">
-                </div>
-            </div>
-            <div class="field">
-                <label for="q67_key_roles">67. What are the key leadership and operational roles? *</label>
-                <textarea id="q67_key_roles" name="Q67: Critical Functional Roles" required placeholder="e.g., Operations Lead managing deliveries, Sales Director generating customer growth, and Finance Manager tracking cash targets."></textarea>
-            </div>
-            <div class="field">
-                <label for="q68_skill_gaps">68. What major skill gaps exist in your current team? *</label>
-                <textarea id="q68_skill_gaps" name="Q68: Team Skill Gaps" required placeholder="e.g., Our staff lacks experience in building online stores and using advanced analytics software."></textarea>
-            </div>
-            <div class="grid">
-                <div class="field">
-                    <label for="q69_hiring_challenges">69. What are the biggest challenges in hiring? *</label>
-                    <input type="text" id="q69_hiring_challenges" name="Q69: Primary Hiring Bottlenecks" required placeholder="e.g., Specialized developers are highly expensive and take months to recruit.">
-                </div>
-                <div class="field">
-                    <label for="q70_turnover_rate">70. What is your employee turnover rate? *</label>
-                    <input type="text" id="q70_turnover_rate" name="Q70: Employee Turnover Profile" required placeholder="e.g., Low turnover rate, around 10% annualized over the last 3 years.">
-                </div>
-            </div>
-            <div class="field">
-                <label for="q71_culture_engagement">71. How would you describe your company culture? *</label>
-                <textarea id="q71_culture_engagement" name="Q71: Workplace Culture Status" required placeholder="e.g., Supportive and team-focused, but employee energy drops when manual work stacks up during peak shipping weeks."></textarea>
-            </div>
-
-            <!-- SECTION J: SUPPLIERS & PARTNERS -->
-            <div class="section-title">Section J: Suppliers & Partners</div>
-            <div class="field">
-                <label for="q72_key_suppliers">72. Who are the key suppliers and vendors for your business? *</label>
-                <textarea id="q72_key_suppliers" name="Q72: Key Suppliers & Vendors" required placeholder="e.g., Regional raw material manufacturers, packing component businesses, and local transport fleets."></textarea>
-            </div>
-            <div class="field">
-                <label for="q73_critical_partners">73. What strategic partners does your business rely on? *</label>
-                <textarea id="q73_critical_partners" name="Q73: Strategic Partnerships" required placeholder="e.g., Regional fulfillment groups, freelance marketing consultants, and third-party delivery dispatch businesses."></textarea>
-            </div>
-            <div class="grid">
-                <div class="field">
-                    <label for="q74_concentration_risk">74. How concentrated is vendor risk? *</label>
-                    <input type="text" id="q74_concentration_risk" name="Q74: Supply Chain Concentration Risk" required placeholder="e.g., High risk (we buy 80% of our primary components from one local distributor).">
-                </div>
-                <div class="field">
-                    <label for="q75_supply_disruption">75. What supply disruptions have you faced? *</label>
-                    <input type="text" id="q75_supply_disruption" name="Q75: Historical Supply Disruptions" required placeholder="e.g., Ocean transport blocks caused raw component shipping arrivals to delay by 3 weeks last winter.">
-                </div>
-            </div>
-            <div class="field">
-                <label for="q76_partner_challenges">76. What are the biggest challenges in managing vendors? *</label>
-                <textarea id="q76_partner_challenges" name="Q76: Vendor Management Challenges" required placeholder="e.g., Shifting unit prices from suppliers shrink our profit margins, and communication via emails can be slow."></textarea>
-            </div>
-            <div class="field">
-                <label for="q77_partner_terms">77. What are the standard payment terms with your primary suppliers? *</label>
-                <input type="text" id="q77_partner_terms" name="Q77: Vendor Settlement Terms" required placeholder="e.g., Standard Net-30 settlement, requiring payment within 30 days from invoicing.">
-            </div>
-
-            <!-- SECTION K: FINANCIALS & METRICS -->
-            <div class="section-title">Section K: Financials & Metrics</div>
-            <div class="grid">
-                <div class="field">
-                    <label for="q78_gross_revenue">78. What was your annual gross revenue last fiscal year? *</label>
-                    <input type="text" id="q78_gross_revenue" name="Q78: Annual Gross Revenue" required placeholder="e.g., Approximately $450,000 USD">
-                </div>
-                <div class="field">
-                    <label for="q79_net_profit">79. What was your net profit margin percentage? *</label>
-                    <input type="text" id="q79_net_profit" name="Q79: Net Profit Margin %" required placeholder="e.g., 18% net operating margin">
-                </div>
-            </div>
-            <div class="grid">
-                <div class="field">
-                    <label for="q80_gross_margin">80. What is your average gross profit margin? *</label>
-                    <input type="text" id="q80_gross_margin" name="Q80: Gross Margin %" required placeholder="e.g., 45% on core services, 25% on physical inventory packs">
-                </div>
-                <div class="field">
-                    <label for="q81_revenue_trend">81. What is the historical revenue growth trend? *</label>
-                    <input type="text" id="q81_revenue_trend" name="Q81: Revenue Growth Trend" required placeholder="e.g., Stable 12% growth year-over-year for the past 3 seasons">
-                </div>
-            </div>
-            <div class="field">
-                <label for="q82_cost_drivers">82. What are the top three cost drivers in your business? *</label>
-                <textarea id="q82_cost_drivers" name="Q82: Top Core Cost Drivers" required placeholder="e.g., 1. Team salaries and payroll, 2. Raw material imports, 3. Commercial office rent fees."></textarea>
-            </div>
-            <div class="grid">
-                <div class="field">
-                    <label for="q83_cash_flow">83. Describe your cash flow cycle bottlenecks. *</label>
-                    <input type="text" id="q83_cash_flow" name="Q83: Cash Flow Bottlenecks" required placeholder="e.g., Clients settle invoices on Net-60 terms, but suppliers demand payment upfront.">
-                </div>
-                <div class="field">
-                    <label for="q84_working_cap">84. Do you have sufficient working capital? *</label>
-                    <input type="text" id="q84_working_cap" name="Q84: Working Capital Adequacy" required placeholder="e.g., Yes, we maintain a comfortable 3-month operational cash cushion.">
-                </div>
-            </div>
-            <div class="field">
-                <label for="q85_kpis">85. What key performance indicators (KPIs) do you track weekly? *</label>
-                <textarea id="q85_kpis" name="Q85: Tracked Weekly KPIs" required placeholder="e.g., Weekly volume of incoming sales calls, average order fulfillment speed, and active user cancellation numbers."></textarea>
-            </div>
-
-            <!-- SECTION L: RISK & COMPLIANCE -->
-            <div class="section-title">Section L: Risk & Compliance</div>
-            <div class="field">
-                <label for="q86_market_risks">86. What are the top market risks to your business? *</label>
-                <textarea id="q86_market_risks" name="Q86: Top Market Threats" required placeholder="e.g., Shifting local trade laws and cheap, fully automated tools entering our market space."></textarea>
-            </div>
-            <div class="field">
-                <label for="q87_operational_risks">87. What are the top operational risks you manage daily? *</label>
-                <textarea id="q87_operational_risks" name="Q87: Top Operational Hazards" required placeholder="e.g., Key staff members suddenly leaving or hardware machinery breakdowns halting the warehouse floor."></textarea>
-            </div>
-            <div class="grid">
-                <div class="field">
-                    <label for="q88_regulatory">88. What major regulations govern your business? *</label>
-                    <input type="text" id="q88_regulatory" name="Q88: Regulatory Compliances" required placeholder="e.g., Strict municipal health storage rules and international consumer data laws.">
-                </div>
-                <div class="field">
-                    <label for="q89_insurance">89. Do you maintain sufficient liability insurance? *</label>
-                    <input type="text" id="q89_insurance" name="Q89: Insurance Coverage Scope" required placeholder="e.g., Yes, complete public liability and physical asset insurance layers are active.">
-                </div>
-            </div>
-
-            <!-- SECTION M: STRATEGY & FUTURE GROWTH -->
-            <div class="section-title">Section M: Strategy & Future Growth</div>
-            <div class="field">
-                <label for="q90_vision">90. What is your strategic vision for the next three years? *</label>
-                <textarea id="q90_vision" name="Q90: Three-Year Strategic Vision" required placeholder="e.g., To transform into a fully automated online delivery hub and capture the top market position regionally."></textarea>
-            </div>
-            <div class="field">
-                <label for="q91_growth_objectives">91. What are your primary growth objectives for the next 12 months? *</label>
-                <textarea id="q91_growth_objectives" name="Q91: 12-Month Growth Objectives" required placeholder="e.g., Launch our high-tier premium membership plan and secure at least 25 new corporate clients."></textarea>
-            </div>
-            <div class="field">
-                <label for="q92_expansion_plans">92. What are your plans for geographic, product, or market expansion? *</label>
-                <textarea id="q92_expansion_plans" name="Q92: Core Expansion Plans" required placeholder="e.g., Expanding our physical courier runs to neighbor cities and releasing a budget-friendly starter package."></textarea>
-            </div>
-            <div class="field">
-                <label for="q93_priorities">93. What are the top three priorities for the business right now? *</label>
-                <textarea id="q93_priorities" name="Q93: Immediate Business Priorities" required placeholder="e.g., 1. Launching our online booking channel, 2. Lowering delivery delay timelines, 3. Retraining staff."></textarea>
-            </div>
-            <div class="field">
-                <label for="q94_threats">94. What are the biggest external threats to your market position? *</label>
-                <textarea id="q94_threats" name="Q94: Major External Threats" required placeholder="e.g., Aggressive low-cost marketing plays from international operators entering our local city space."></textarea>
-            </div>
-            <div class="field">
-                <label for="q95_opportunities">95. What are the most promising opportunities you want to capture? *</label>
-                <textarea id="q95_opportunities" name="Q95: Top Growth Opportunities" required placeholder="e.g., Partnering with regional corporate aggregators to instantly gain bulk client order portfolios."></textarea>
-            </div>
-
-            <!-- SECTION N: OPEN COMMENTS & REFLECTIONS -->
-            <div class="section-title">Section N: Open Comments & Reflections</div>
-            <div class="field">
-                <label for="q96_hidden_gems">96. What underutilized assets or "hidden gems" exist in your business? *</label>
-                <textarea id="q96_hidden_gems" name="Q96: Underutilized Assets" placeholder="e.g., We have a massive historical list of inactive clients that we have not pitched our new packages to yet."></textarea>
-            </div>
-            <div class="field">
-                <label for="q97_biggest_waste">97. What is the biggest waste of time or money in your current operations? *</label>
-                <textarea id="q97_biggest_waste" name="Q97: Core Operational Waste" placeholder="e.g., Spending hours manually fixing billing data rows and matching tracking sheets every Friday afternoon."></textarea>
-            </div>
-            <div class="field">
-                <label for="q98_one_change">98. If you could change just one thing in the business today, what would it be? *</label>
-                <textarea id="q98_one_change" name="Q98: One Critical Shift" placeholder="e.g., Completely swap out our messy manual messaging channels for a clean, automated website interface."></textarea>
-            </div>
-            <div class="field">
-                <label for="q99_unasked_critical">99. What critical question haven't we asked that we should know about your business? *</label>
-                <textarea id="q99_unasked_critical" name="Q99: Latent Contextual Info" placeholder="e.g., Our primary local suppliers are planning a 10% wholesale rate hike over the coming winter cycle."></textarea>
-            </div>
-            <div class="field">
-                <label for="q100_help_expectation">100. What do you expect most from our advisory firm's diagnostic review? *</label>
-                <textarea id="q100_help_expectation" name="Q100: Diagnostic Expectations" placeholder="e.g., Give us a bulletproof strategy to automate our orders and raise our retention rates safely."></textarea>
-            </div>
-            <div class="field">
-                <label for="q101_additional_notes">101. Provide any additional comments or context about your business model here. *</label>
-                <textarea id="q101_additional_notes" name="Q101: Open Context Notes" placeholder="e.g., We have a secondary warehouse option opening up next quarter if we need extra footprint storage."></textarea>
-            </div>
-            <div class="field">
-                <label for="q102_diagnostic_ready">102. Confirm you have filled this out completely to begin our deep-dive analysis. *</label>
-                <select id="q102_diagnostic_ready" name="Q102: Client Execution Readiness Confirmation" >
-                    <option value="Not Confirmed">-- Please Select --</option>
-                    <option value="Confirmed Ready">Yes, my answers are complete. Run the strategic structural analysis.</option>
-                </select>
-            </div>
-
-            <button type="submit" class="submit-btn">Submit for Analysis</button>
-        </form>
-    </div>
-
-    <!-- YOUR CUSTOM SUCCESS PROMPT -->
-    <div id="success-view" class="success-box">
-        <p>Thank you for your answers. We have received your business details safely. Our team will look over everything carefully. <strong>Your core business model analysis will be sent to your email address within 24 to 48 hours.</strong></p>
-    </div>
+<div class="field">
+<label>Name</label>
+<input type="text" name="Name" required>
 </div>
 
-<script>
-    document.getElementById('business-review-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        var form = this;
-        var submitBtn = form.querySelector('.submit-btn');
-        
-        submitBtn.innerText = 'Sending Details...';
-        submitBtn.disabled = true;
+<div class="field">
+<label>Phone</label>
+<input type="tel" name="Phone" required>
+</div>
 
-        // AJAX background post directly to Formspree
-        fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-            headers: { 'Accept': 'application/json' }
-        })
-        .then(response => {
-    		if (response.ok) {
-        		document.getElementById('form-view').style.display = 'none';
-        		document.getElementById('success-view').style.display = 'block';
-        		window.scrollTo({top: 0, behavior: 'smooth'});
-    		} else {
-        		response.json().then(data => {
-            		console.log("Formspree Error:", data);
-            		alert(data.error || "Form submission failed.");
-        		});
-        		submitBtn.innerText = 'Submit for Analysis';
-        		submitBtn.disabled = false;
-    		}
-		})
-        .catch(error => {
-            alert("Network connection issue. Please try again.");
-            submitBtn.innerText = 'Submit for Analysis';
-            submitBtn.disabled = false;
-        });
-    });
-</script>
+<div class="field">
+<label>Email</label>
+<input type="email" name="Email" required>
+</div>
+
+<div class="field">
+<label>Business Name</label>
+<input type="text" name="Business" required>
+</div>
+
+<div class="field">
+<label>Industry</label>
+<input type="text" name="Industry" required>
+</div>
+
+<!-- CUSTOMER PROFILES -->
+<div class="section-title">Customer Profiles</div>
+
+<textarea name="Q1" placeholder="Who are your most common customers?"></textarea>
+<textarea name="Q2" placeholder="Best customers?"></textarea>
+<textarea name="Q3" placeholder="Difficult customers?"></textarea>
+<textarea name="Q4" placeholder="Why do customers come?"></textarea>
+<textarea name="Q5" placeholder="What happens if they don’t fix?"></textarea>
+<textarea name="Q6" placeholder="Why choose you?"></textarea>
+
+<!-- OPERATIONS -->
+<div class="section-title">Operations</div>
+
+<textarea name="Q7" placeholder="How customers get service?"></textarea>
+<textarea name="Q8" placeholder="Manual steps?"></textarea>
+<textarea name="Q9" placeholder="What can be faster?"></textarea>
+<textarea name="Q10" placeholder="Services offered?"></textarea>
+<input name="Q11" placeholder="Do customers understand services?">
+<input name="Q12" placeholder="Bundled services?">
+
+<!-- REVENUE -->
+<div class="section-title">Revenue</div>
+
+<textarea name="Q13" placeholder="Income sources"></textarea>
+<input name="Q14" placeholder="Most daily cash">
+<input name="Q15" placeholder="Highest profit">
+<input name="Q16" placeholder="Low profit jobs">
+
+<!-- PRICING -->
+<div class="section-title">Pricing</div>
+
+<textarea name="Q17" placeholder="Pricing method"></textarea>
+<input name="Q18" placeholder="Price or quality">
+<input name="Q19" placeholder="Fixed or negotiated">
+
+<!-- RETENTION -->
+<div class="section-title">Retention</div>
+
+<input name="Q20" placeholder="Do customers return?">
+<input name="Q21" placeholder="Repeat %">
+<input name="Q22" placeholder="Maintenance plans?">
+<textarea name="Q23" placeholder="How customers find you"></textarea>
+<input name="Q24" placeholder="Best source">
+<input name="Q25" placeholder="Marketing activity">
+
+<!-- GROWTH -->
+<div class="section-title">Growth</div>
+
+<textarea name="Q26" placeholder="Upsells"></textarea>
+<input name="Q27" placeholder="Upsell system">
+<textarea name="Q28" placeholder="New services"></textarea>
+<textarea name="Q29" placeholder="Expenses"></textarea>
+<textarea name="Q30" placeholder="Variable costs"></textarea>
+<textarea name="Q31" placeholder="Growth limits"></textarea>
+<input name="Q32" placeholder="Runs without you?">
+<textarea name="Q33" placeholder="Future vision"></textarea>
+
+<button type="submit">Submit</button>
+
+</form>
+
+</div>
+
 </body>
 </html>
