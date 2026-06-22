@@ -1,0 +1,45 @@
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Common arrow style -->
+  <defs>
+    <style>
+      .arrow {
+        fill: none;
+        stroke-width: 10;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+      }
+    </style>
+  </defs>
+
+  <!-- Arrow 1 -->
+  <polyline
+    class="arrow"
+    stroke="#D64545"
+    points="80,320 220,220 220,260 320,180 200,180 200,220" />
+
+  <!-- Arrow 2 -->
+  <polyline
+    class="arrow"
+    stroke="#E57A3C"
+    points="150,310 290,210 290,250 390,170 270,170 270,210" />
+
+  <!-- Arrow 3 -->
+  <polyline
+    class="arrow"
+    stroke="#E5B53C"
+    points="220,300 360,200 360,240 460,160 340,160 340,200" />
+
+  <!-- Arrow 4 -->
+  <polyline
+    class="arrow"
+    stroke="#F0C9A0"
+    points="290,290 430,190 430,230 530,150 410,150 410,190" />
+
+  <!-- Arrow 5 -->
+  <polyline
+    class="arrow"
+    stroke="#3AA6A1"
+    points="360,280 500,180 500,220 600,140 480,140 480,180" />
+
+</svg>
